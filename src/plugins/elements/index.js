@@ -9,7 +9,8 @@ import {
     FormItem,
     Input,
     Select,
-    Option
+    Option,
+    Alert
 } from 'element-ui';
 
 const elements = [
@@ -19,9 +20,11 @@ const elements = [
     FormItem,
     Input,
     Select,
-    Option
+    Option,
+    Alert
 ];
 
 locale.use(lang);
 
 elements.forEach(el => Vue.use(el, { locale }));
+ // use components in global
