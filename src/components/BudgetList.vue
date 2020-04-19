@@ -19,7 +19,7 @@ export default {
     props: {
       list: {
         type: Object,
-        default: () => ({})
+        default: () => ({})  //для сложных типов всегда указываем фунцию
       }
     },
     data: () => ({
