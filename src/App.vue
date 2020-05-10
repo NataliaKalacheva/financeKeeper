@@ -49,6 +49,14 @@ export default {
         id: String(Math.random())
       };
 
+      if (newObj.type === 'OUTCOME' && newObj.value > 0) {
+        newObj.value = -newObj.value;
+      }
+
+      if (newObj.type === 'INCOME' && newObj.value < 0) {
+        newObj.value = Math.abs(newObj.value);
+      }
+
       this.$set(this.list, newObj.id, newObj);
     }
   }

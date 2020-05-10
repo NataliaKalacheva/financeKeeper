@@ -1,6 +1,6 @@
 <template>
  <div class="total-value">
-  Balance: {{ total }}
+  Balance: <span v-bind:style="{ color: color }">{{ total }}</span>
  </div>
 </template>
 
@@ -11,6 +11,13 @@ export default {
     total: {
       type: Number,
       default: 0
+    }
+  },
+  computed: {
+    color() {
+      if (this.total > 0) { return 'green'}
+      else if (this.total === 0) { return 'black' }
+      else { return 'red' }
     }
   }
 };
