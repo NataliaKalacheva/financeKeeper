@@ -2,11 +2,20 @@
       <div class="list-item">
         <span class="budget-comment">{{ item.comment }}</span>
         <span class="budget-value">{{ item.value }}</span>
-        <ElButton type="danger" size="mini" @click="deleteItem(item.id)">Delete</ElButton>
+        <ElButton type="danger" size="mini" @click="confirmVisible = true">Delete</ElButton>
+
+        <el-dialog title="Delete item" :visible.sync="confirmVisible" width="30%">
+        <span>Confirm deleting item</span>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="confirmVisible = false">Cancel</el-button>
+          <el-button type="primary" @click="onDeleteItem(item.id)">Confirm</el-button>
+        </span>
+      </el-dialog>
       </div>
 </template>
 
 <script>
+
 export default {
     name: 'BudgetItem',
     props: {
@@ -15,10 +24,13 @@ export default {
         default: () => ({})
       }
     },
-    data: () => ({}),
+    data: () => ({
+      confirmVisible: false
+    }),
     methods: {
-      deleteItem(id) {
-        this.$emit('deleteItem', id);
+      onDeleteItem(id) {
+        this.$emit('onDeleteItem', id);
+        this.confirmVisible = false;
       }
     }
 }
@@ -31,3 +43,4 @@ export default {
     margin-right: 20px;
   }
 </style>
+

@@ -2,7 +2,7 @@
   <div class="budget-list-wrap">
       <ElCard :header="header">
            <template v-if="isItems">
-             <BudgetItem v-for='(item, prop) in list' :key="prop" :item='item' @deleteItem="deleteItem"/>
+             <BudgetItem v-for='(item, prop) in list' :key="prop" :item='item' @onDeleteItem="onDeleteItem"/>
            </template>
            <ElAlert v-else type='info' :title="emptyTitle" :closable="false"></ElAlert>
       </ElCard>
@@ -33,8 +33,8 @@ export default {
       }
     },
     methods: {
-      deleteItem(id) {
-        this.$emit('deleteItem', id);
+      onDeleteItem(id) {
+        this.$emit('onDeleteItem', id);
       }
     }
 }

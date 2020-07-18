@@ -2,7 +2,7 @@
   <div id="app">
     <Form @submitForm="onFormSubmit"></Form>
     <TotalBalance :total="totalBalance"/>
-    <BudgetList :list='list' @deleteItem="onDeleteItem"/>
+    <BudgetList :list='list' @onDeleteItem="onDeleteItem"/>
   </div>
 </template>
 
@@ -32,7 +32,7 @@ export default {
         comment: 'Some outcome',
         id: 2,
       }
-    },
+    }
   }),
   computed: {
     totalBalance() {
