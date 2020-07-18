@@ -23,13 +23,13 @@ export default {
       1: {
         type: 'INCOME',
         value: 100,
-        comment: 'Some comment',
+        comment: 'wage',
         id: 1,
       },
       2: {
         type: 'OUTCOME',
         value: -50,
-        comment: 'Some outcome',
+        comment: 'shop',
         id: 2,
       }
     }
