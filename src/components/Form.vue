@@ -7,12 +7,13 @@
           <ElOption label="Outcome" value="OUTCOME"></ElOption>
         </ElSelect>
       </ElFormItem>
+      <ElFormItem label="Source" prop="comment">
+        <ElInput v-model="formData.comment"></ElInput>
+      </ElFormItem>
       <ElFormItem label="Value" prop="value">
         <ElInput v-model.number="formData.value"></ElInput>
       </ElFormItem>
-      <ElFormItem label="Comments" prop="comment">
-        <ElInput v-model="formData.comment"></ElInput>
-      </ElFormItem>
+      
       <ElButton @click="onSubmit" type="primary">Submit</ElButton>
     </ElForm>
   </ElCard>
@@ -21,19 +22,35 @@
 <script>
 export default {
   name: 'Form',
-  data: () => ({
-    formData: {
-      type: 'INCOME',
-      value: 0,
-      comment: '',
-    },
-    rules: {
-      type: [{ required: true, message: 'Please select type', trigger: 'blur' }],
-      comment: [{ required: true, message: 'Please left comment', trigger: 'blur' }],
-      value: [{ required: true, message: 'Please input value', trigger: 'blur' },
-      { type: 'number', message: 'Value must be a number', trigger: 'change' }]
-    },
-  }),
+  data() {
+      let checkValue = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('Please input the value'));
+        }
+          if (!Number.isInteger(value)) {
+            callback(new Error('Please input digits'));
+          } else {
+            if (value <= 0) {
+              callback(new Error('Value must be greater than 0'));
+            } else {
+              callback();
+            }
+          }
+      };
+      return {
+        formData: {
+          type: 'INCOME',
+          value: 0,
+          comment: '',
+        },
+        rules: {
+          type: [{ required: true, message: 'Please select type', trigger: 'blur' }],
+          comment: [{ required: true, message: 'Please left comment', trigger: 'blur' }],
+          value: [{ required: true, message: 'Please input value', trigger: 'blur' },
+          { validator: checkValue, trigger: 'blur' }]
+        }
+      };
+  },
   methods: {
     onSubmit() {
       this.$refs.addItemForm.validate(valid => {

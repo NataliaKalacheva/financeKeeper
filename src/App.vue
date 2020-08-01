@@ -1,8 +1,12 @@
 <template>
   <div id="app">
-    <Form @submitForm="onFormSubmit"></Form>
-    <TotalBalance :total="totalBalance"/>
-    <BudgetList :list='list' @onDeleteItem="onDeleteItem"/>
+    <section class="form">
+      <Form @submitForm="onFormSubmit"></Form>
+    </section>
+    <section class="balance">
+      <TotalBalance :total="totalBalance"/>
+      <BudgetList :list='list' @onDeleteItem="onDeleteItem"/>
+    </section>
   </div>
 </template>
 
@@ -71,5 +75,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+body {
+   background: #F2F6FC;
 }
 </style>
